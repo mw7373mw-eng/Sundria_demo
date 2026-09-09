@@ -292,7 +292,12 @@ input[type=range] { width: 100%; accent-color: var(--green); }
 .sundria-forecast .metric-strip.four { grid-template-columns: repeat(4, 1fr); }
 .sundria-forecast .metric-tile { display: grid; gap: 8px; padding: 17px; border: 1px solid var(--line); border-radius: 13px; background: #fff; min-width: 0; }
 .sundria-forecast .metric-tile small { color: #71867e; text-transform: uppercase; font-size: 9px; letter-spacing: .08em; }
-.sundria-forecast .metric-tile strong { font: 700 clamp(17px, 1.7vw, 24px)/1.1 var(--serif); color: var(--forest); overflow-wrap: anywhere; }
+.sundria-forecast .metric-tile strong { font: 700 clamp(17px, 1.7vw, 24px)/1.1 var(--serif); color: var(--forest); overflow-wrap: anywhere; font-variant-numeric: tabular-nums; }
+/* Value tiles that carry a unit: keep the figure on one line and align the rows. */
+.sundria-forecast .metric-tile.compact { grid-template-rows: auto 1fr auto; gap: 6px; padding: 14px 15px; }
+.sundria-forecast .metric-tile.compact small { min-height: 2.1em; letter-spacing: .06em; }
+.sundria-forecast .metric-tile.compact strong { white-space: nowrap; overflow-wrap: normal; font-size: clamp(19px, 1.6vw, 25px); align-self: end; }
+.sundria-forecast .metric-tile.compact span { white-space: nowrap; font-size: 9.5px; letter-spacing: .04em; }
 .sundria-forecast .metric-tile span { font-size: 9px; color: #7b8f87; }
 
 /* horizon strip — original 4-up form, plus a 5-up variant for Now + 4 horizons */

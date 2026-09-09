@@ -166,17 +166,17 @@ export default function TryOurModel() {
             <TruthBadge tone="warning">REPRESENTATIVE VALUES</TruthBadge>
           </div>
           <section className="metric-strip">
-            <Tile label="GHI" value={`${exp.weather.ghi} W/m²`} />
-            <Tile label="DNI" value={`${exp.weather.dni} W/m²`} />
-            <Tile label="DHI" value={`${exp.weather.dhi} W/m²`} />
-            <Tile label="Forecast POA" value={`${exp.forecastWeather.poa} W/m²`} />
-            <Tile label="Temperature" value={`${exp.weather.temp} °C`} />
+            <Tile label="GHI" value={exp.weather.ghi} unit="W/m²" />
+            <Tile label="DNI" value={exp.weather.dni} unit="W/m²" />
+            <Tile label="DHI" value={exp.weather.dhi} unit="W/m²" />
+            <Tile label="Forecast POA" value={exp.forecastWeather.poa} unit="W/m²" />
+            <Tile label="Temperature" value={exp.weather.temp.toFixed(1)} unit="°C" />
           </section>
           <section className="metric-strip four" style={{ marginTop: 12 }}>
-            <Tile label="Wind speed" value={`${exp.weather.wind} m/s`} />
-            <Tile label="Solar zenith" value={`${exp.weather.zenith}°`} />
-            <Tile label="Solar azimuth" value={`${exp.weather.azimuth}°`} />
-            <Tile label="Clearness index" value={exp.weather.clearnessIndex.toFixed(2)} />
+            <Tile label="Wind speed" value={exp.weather.wind.toFixed(1)} unit="m/s" />
+            <Tile label="Solar zenith" value={exp.weather.zenith.toFixed(1)} unit="degrees" />
+            <Tile label="Solar azimuth" value={exp.weather.azimuth.toFixed(1)} unit="degrees" />
+            <Tile label="Clearness index" value={exp.weather.clearnessIndex.toFixed(2)} unit="kt" />
           </section>
           <p className="muted" style={{ marginTop: 14 }}>
             Solar geometry is computed from the site's real coordinates and this origin's real timestamp. The
@@ -226,6 +226,12 @@ export default function TryOurModel() {
 function CaseMetric({ label, value }: { label: string; value: string }) {
   return <article className="metric-tile"><small>{label}</small><strong>{value}</strong><span>Single stored experiment</span></article>
 }
-function Tile({ label, value }: { label: string; value: string }) {
-  return <article className="metric-tile"><small>{label}</small><strong>{value}</strong></article>
+function Tile({ label, value, unit }: { label: string; value: string | number; unit: string }) {
+  return (
+    <article className="metric-tile compact">
+      <small>{label}</small>
+      <strong>{value}</strong>
+      <span>{unit}</span>
+    </article>
+  )
 }
