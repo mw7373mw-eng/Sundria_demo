@@ -6,6 +6,7 @@ import Architecture from './components/Architecture'
 import ForecastChart from './components/ForecastChart'
 import ManualMode, { manualInputs, type ManualState } from './components/ManualMode'
 import { AnalysisStage, BessStage, FinalStage, HorizonStrip, InputsStage, RiskStage } from './components/Stages'
+import TryOurModel from './components/TryOurModel'
 import { Num, PipelineRail, Why } from './components/ui'
 
 /** stage 0 = idle, 1 inputs, 2 forecast, 3 analysis, 4 bess, 5 grid risk, 6 final */
@@ -137,6 +138,8 @@ export default function App() {
         {stage >= 4 && <BessStage r={result} />}
         {stage >= 5 && <RiskStage r={result} after={stage >= 5} />}
         {stage >= 6 && <FinalStage r={result} />}
+
+        <TryOurModel />
 
         <Architecture />
 

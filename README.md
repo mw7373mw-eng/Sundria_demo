@@ -32,7 +32,7 @@ stage while the simulation runs. Each stage animates in:
 | 6 · Final decision | Checklist of what Sundria concluded and the resulting grid status |
 
 A compact architecture strip (`Weather + PV Data → Forecasting Engine → Risk Analysis → BESS
-Decision → Grid Stability`) sits at the bottom of the page.
+Decision → Grid Stability`) sits at the bottom of the page, after the *Try Our Model* section.
 
 Every decision and status carries a **"Why?"** button with a short plain-language explanation.
 
@@ -74,28 +74,6 @@ would take exceeds what the pack can give or absorb. Grid risk is scored from th
 gap, the steepness of the ramp and the width of the uncertainty band, and rescored on the
 post-dispatch profile.
 
-## Publishing to GitHub
-
-The folder is already an initialised git repository with an initial commit on `main`, a MIT
-`LICENSE`, an `.nvmrc` pinning Node 20, and a GitHub Actions workflow that runs `npm ci &&
-npm run build` on every push and pull request.
-
-Create an empty repository on GitHub (no README, no .gitignore, no license — they already exist
-here), then:
-
-```bash
-cd Sundria_demo
-git remote add origin https://github.com/<your-username>/sundria-demo.git
-git push -u origin main
-```
-
-With the [GitHub CLI](https://cli.github.com) installed, one command does both:
-
-```bash
-cd Sundria_demo
-gh repo create sundria-demo --public --source=. --remote=origin --push
-```
-
 ## Running locally
 
 ```bash
@@ -111,7 +89,7 @@ No environment variables, no secrets, no backend.
 
 **From the dashboard**
 
-1. Push this folder to GitHub (see *Publishing to GitHub* above).
+1. Push this folder to its own Git repository (GitHub / GitLab / Bitbucket).
 2. In Vercel choose **Add New → Project** and import that repository.
 3. If `Sundria_demo` is a subfolder of a larger repo, set **Root Directory** to `Sundria_demo`.
 4. Framework preset **Vite** is detected automatically; build command `npm run build`, output directory `dist`.
@@ -142,12 +120,14 @@ Sundria_demo/
    ├─ styles.css         # Sundria design tokens and card system
    ├─ demo/
    │  ├─ engine.ts       # deterministic forecast analysis, dispatch and risk rules
-   │  └─ scenarios.ts    # the three preset cases + the 23-feature catalogue
+   │  ├─ scenarios.ts    # the three preset cases + the 23-feature catalogue
+   │  └─ experiments.ts  # five recorded forecasting experiments (Try Our Model)
    └─ components/
       ├─ ui.tsx          # pipeline rail, count-up numbers, "Why?" disclosure
       ├─ ForecastChart.tsx
       ├─ Stages.tsx      # steps 1, 3, 4, 5, 6
       ├─ ManualMode.tsx
+      ├─ TryOurModel.tsx # stored forecasting experiments, Sundria Forecast-page UI
       └─ Architecture.tsx
 ```
 

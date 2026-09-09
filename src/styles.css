@@ -247,3 +247,81 @@ input[type=range] { width: 100%; accent-color: var(--green); }
   .manual { grid-template-columns: 1fr; }
   .shell { padding-bottom: 44px; }
 }
+
+/* ==================================================================
+   "Try Our Model" section.
+   Rules below are lifted from the Sundria platform stylesheet
+   (renewable-grid-agent/frontend/src/styles.css) so the forecasting
+   interface is visually identical to the original Forecast page.
+   Everything is scoped to .sundria-forecast so the existing demo
+   above is untouched.
+================================================================== */
+.sundria-forecast.product-page { display: grid; gap: 20px; }
+.sundria-forecast .muted { color: #687d75; line-height: 1.6; font-size: 12.5px; }
+
+/* truth badges — ProductUI.tsx / .truth-row, .truth-badge */
+.sundria-forecast .truth-row { display: flex; align-items: center; flex-wrap: wrap; gap: 7px; }
+.sundria-forecast .truth-badge { display: inline-flex; align-items: center; border: 1px solid #d4dfda; border-radius: 99px; padding: 6px 9px; background: #f3f6f4; color: #52675f; font-size: 8px; font-weight: 900; letter-spacing: .07em; }
+.sundria-forecast .truth-badge.good { background: #e7f4dd; border-color: #cfe5bd; color: #3e7428; }
+.sundria-forecast .truth-badge.warning { background: #fff4d9; border-color: #e8d29c; color: #806118; }
+.sundria-forecast .truth-badge.dark { background: var(--forest); border-color: var(--forest); color: var(--lime); }
+
+/* case selector — .historical-control */
+.sundria-forecast .historical-control { display: flex; align-items: end; gap: 14px; }
+.sundria-forecast .historical-control label { display: grid; gap: 7px; flex: 1; }
+.sundria-forecast .historical-control label span { font-size: 9px; font-weight: 900; color: #71867e; }
+.sundria-forecast .historical-control select { width: 100%; }
+.sundria-forecast select { border: 1px solid #d8e3de; border-radius: 9px; padding: 11px 12px; background: #fff; color: #19372f; }
+
+/* quick-pick chips (same card language as .experiment-card) */
+.experiment-chips { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+.experiment-chip { display: grid; gap: 4px; text-align: left; padding: 12px 14px; border: 1px solid #dce6e1; border-radius: 13px; background: #fff; cursor: pointer; box-shadow: 0 9px 28px rgba(18,56,47,.06); transition: border-color .2s, background .2s, transform .2s; }
+.experiment-chip:hover { transform: translateY(-2px); }
+.experiment-chip small { font-size: 8.5px; font-weight: 900; letter-spacing: .1em; color: #8ba098; }
+.experiment-chip b { font-size: 12.5px; color: var(--forest); }
+.experiment-chip.active { border: 2px solid var(--lime); background: linear-gradient(145deg, #fff, #f2f7e8); }
+.experiment-chip.active small { color: var(--green); }
+
+/* chart, tables, tiles — .chart.tall, .forecast-result-table, .metric-strip */
+.sundria-forecast .chart.tall { height: 330px; margin: 20px -5px 5px -14px; }
+.sundria-forecast .page-grid { display: grid; grid-template-columns: 1.35fr .9fr; gap: 18px; }
+.forecast-result-table { display: grid; margin-top: 18px; overflow: auto; }
+.forecast-result-table > div { display: grid; gap: 10px; align-items: center; padding: 12px; border-bottom: 1px solid #e3ebe7; font-size: 11px; min-width: 850px; grid-template-columns: .6fr 1.5fr repeat(4, 1fr); }
+.forecast-result-table .table-head { font-size: 8px; font-weight: 900; color: #788c84; text-transform: uppercase; letter-spacing: .06em; }
+.sundria-forecast .metric-strip { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+.sundria-forecast .metric-strip.four { grid-template-columns: repeat(4, 1fr); }
+.sundria-forecast .metric-tile { display: grid; gap: 8px; padding: 17px; border: 1px solid var(--line); border-radius: 13px; background: #fff; min-width: 0; }
+.sundria-forecast .metric-tile small { color: #71867e; text-transform: uppercase; font-size: 9px; letter-spacing: .08em; }
+.sundria-forecast .metric-tile strong { font: 700 clamp(17px, 1.7vw, 24px)/1.1 var(--serif); color: var(--forest); overflow-wrap: anywhere; }
+.sundria-forecast .metric-tile span { font-size: 9px; color: #7b8f87; }
+
+/* horizon strip — original 4-up form, plus a 5-up variant for Now + 4 horizons */
+.sundria-forecast .horizon-strip { grid-template-columns: repeat(4, 1fr); }
+.sundria-forecast .horizon-strip.five { grid-template-columns: repeat(5, 1fr); }
+.sundria-forecast .horizon-strip div { padding: 17px; }
+.sundria-forecast .horizon-strip b { font: 700 24px/1 var(--serif); color: var(--forest); }
+
+/* validated performance figure — .hero-wape */
+.hero-wape-inline { display: grid; gap: 4px; margin-top: 10px; }
+.hero-wape-inline strong { font: 700 clamp(38px, 5vw, 58px)/1 var(--serif); color: var(--green); }
+.hero-wape-inline span { color: #71867e; font-size: 11px; }
+
+/* technical disclosure — details.technical + .detail-list */
+.sundria-forecast .technical summary { cursor: pointer; font-weight: 800; color: var(--green); font-size: 12.5px; }
+.sundria-forecast .detail-list { display: grid; gap: 14px; margin: 20px 0 0; }
+.sundria-forecast .detail-list div { display: grid; gap: 5px; padding-bottom: 12px; border-bottom: 1px solid #e8eeeb; }
+.sundria-forecast .detail-list div:last-child { border: 0; }
+.sundria-forecast .detail-list dt { font-size: 10px; color: #7d918a; text-transform: uppercase; letter-spacing: .08em; }
+.sundria-forecast .detail-list dd { margin: 0; font-weight: 650; font-size: 12.5px; overflow-wrap: anywhere; }
+
+@media (max-width: 1100px) {
+  .experiment-chips { grid-template-columns: repeat(3, 1fr); }
+  .sundria-forecast .metric-strip { grid-template-columns: repeat(3, 1fr); }
+  .sundria-forecast .page-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 780px) {
+  .experiment-chips { grid-template-columns: repeat(2, 1fr); }
+  .sundria-forecast .historical-control { display: grid; grid-template-columns: 1fr; }
+  .sundria-forecast .horizon-strip, .sundria-forecast .horizon-strip.five, .sundria-forecast .horizon-strip.four { grid-template-columns: repeat(2, 1fr); }
+  .sundria-forecast .metric-strip, .sundria-forecast .metric-strip.four { grid-template-columns: 1fr 1fr; }
+}
